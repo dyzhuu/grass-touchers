@@ -64,5 +64,4 @@
 			console.error("Geolocation is not supported by this browser.");
 		}
 	}
-
 </script>
