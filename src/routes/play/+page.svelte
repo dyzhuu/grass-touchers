@@ -2,4 +2,6 @@
 	import Map from '$lib/Map.svelte';
 </script>
 
-<Map />
+<div class="w-[100dvw] h-full p-3">
+	<Map />
+</div>
