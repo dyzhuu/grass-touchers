@@ -6,7 +6,23 @@
 	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
 
-	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
+	import { AppShell, AppBar, FileButton} from '@skeletonlabs/skeleton';
+    
+	let picture: string | null;
+    let fileinput;
+
+	
+	const onFileSelected = (e: any) => {
+		let image = e.target.files![0];
+		let reader = new FileReader();
+		reader.readAsDataURL(image);
+		reader.onload = e => {
+			if (typeof e.target!.result === "string") {
+				picture = e.target!.result
+			};
+		}
+	}
+
 </script>
 
 
@@ -14,7 +30,9 @@
 	<svelte:fragment slot="header">
 		<AppBar gridColumns="grid-cols-3" slotTrail="place-content-end">
 			<svelte:fragment slot="lead">(Logo)</svelte:fragment>
-			<svelte:fragment slot="trail">(Camera)</svelte:fragment>
+			<svelte:fragment slot="trail">
+				    <FileButton name="photo" accept="image/*" capture="environment" on:change={(e)=>onFileSelected(e)} bind:this={fileinput}>camera</FileButton>
+			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
 	<!-- (sidebarLeft) -->
@@ -36,3 +54,4 @@
 		</div>
 	</svelte:fragment>
 </AppShell>
+
