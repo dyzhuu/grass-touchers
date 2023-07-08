@@ -16,13 +16,13 @@
 		display: grid;
 	}
 	.map {
-		margin: 5%;
+		margin: 3%;
 
 		display: flex;
 		justify-content: center;
 		align-items: center;
 
-		border: 5px solid black;
+		border: 5px solid #818080;
 		text-align: center;
 	}
 	#locationButton {
@@ -64,4 +64,5 @@
 			console.error("Geolocation is not supported by this browser.");
 		}
 	}
+
 </script>
