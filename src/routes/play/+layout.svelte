@@ -10,8 +10,6 @@
 
 	$: map = $page.url.pathname == '/play';
 	$: leaderboard = $page.url.pathname == '/play/leaderboard';
-
-	$: console.log(map);
 </script>
 
 <AppShell>
