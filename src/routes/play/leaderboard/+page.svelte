@@ -3,7 +3,7 @@
     import { Table, tableMapperValues } from '@skeletonlabs/skeleton'
 
     const you = [
-        { position: 100, name: 'hee', score: '1' },
+        { position: 100, name: 'Your username', score: '1' },
     ]
 
     const sourceData = [
@@ -57,8 +57,8 @@
         background-color: "bg-surface-800";
         width: 100%;
         position: fixed;
-        bottom: 69px;
-        right: -5px;
+        bottom: 80px;
+        right: 0px;
         z-index: 2;
     }
 </style>

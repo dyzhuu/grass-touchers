@@ -10,6 +10,7 @@
 
 	import {page} from "$app/stores";
 
+	// TODO: remove later since adding 3 navbar buttons
     $: isMap = $page.url.pathname == '/play';
 </script>
 
@@ -32,14 +33,20 @@
 	<svelte:fragment slot="footer"> 
 		<div class="h-20 flex ">
 			<a href="/play">
-				<div class="flex justify-center h-full w-[50dvw] p-1">
-					<button type="button" class="btn w-full rounded-md {isMap ? 'bg-primary-800': 'bg-primary-500'}" >Map</button>
+				<div class="flex justify-center w-[33dvw] h-full p-1">
+					<button type="button" class="btn w-full rounded-md {$page.url.pathname === '/play' ? 'bg-primary-500': 'bg-primary-800'}" >Map</button>
 				</div>
 			</a>
 
 			<a data-sveltekit-reload href="/play/leaderboard">
-				<div class="flex justify-center w-[50dvw] h-full p-1">
-					<button type="button" class="btn w-full rounded-md {isMap ? 'bg-primary-500': 'bg-primary-800'}">Lea</button>
+				<div class="flex justify-center w-[33dvw] h-full p-1">
+					<button type="button" class="btn w-full rounded-md {$page.url.pathname === '/play/leaderboard' ? 'bg-primary-500': 'bg-primary-800'}">Lea</button>
+				</div>
+			</a>
+
+			<a data-sveltekit-reload href="/play/profile">
+				<div class="flex justify-center w-[33dvw] h-full p-1">
+					<button type="button" class="btn w-full rounded-md {$page.url.pathname === '/play/profile' ? 'bg-primary-500': 'bg-primary-800'}">Pfp</button>
 				</div>
 			</a>
 		</div>
