@@ -28,7 +28,7 @@
 </script>
 <div class="flex justify-center py-10 px-5">
   <table class="table-auto w-full border border-surface-700 max-w-[600px]">
-    <thead class="bg-surface-600 text-white">
+    <thead class="bg-surface-600 text-white sticky -top-1 z-10">
       <tr class="">
         <th class="px-4 py-5">Ranking</th>
         <th class="px-4 py-5">Name</th>
@@ -55,10 +55,3 @@
     </tbody>
   </table>
 </div>
-
-<style>
-    #head {
-        position: sticky;
-        z-index: 3;
-    }
-</style>
