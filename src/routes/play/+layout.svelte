@@ -4,15 +4,13 @@
 	// If you have source.organizeImports set to true in VSCode, then it will auto change this ordering
 	import '@skeletonlabs/skeleton/styles/skeleton.css';
 	// Most of your app wide CSS should be put in this file
-	import '../app.postcss';
+	import '../../app.postcss';
 
 	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
 
 	import {page} from "$app/stores";
 
     $: isMap = $page.url.pathname == '/play';
-
-
 </script>
 
 
@@ -35,13 +33,13 @@
 		<div class="h-20 flex ">
 			<a href="/play">
 				<div class="flex justify-center h-full w-[50dvw] p-1">
-					<button type="button" class="btn w-full rounded-map {isMap ? 'bg-primary-800': 'bg-primary-500'}" >Map</button>
+					<button type="button" class="btn w-full rounded-md {isMap ? 'bg-primary-800': 'bg-primary-500'}" >Map</button>
 				</div>
 			</a>
 
 			<a data-sveltekit-reload href="/play/leaderboard">
 				<div class="flex justify-center w-[50dvw] h-full p-1">
-					<button type="button" class="btn w-full rounded-md {isMap ? 'bg-primary-500': 'bg-primary-800'}">L</button>
+					<button type="button" class="btn w-full rounded-md {isMap ? 'bg-primary-500': 'bg-primary-800'}">Lea</button>
 				</div>
 			</a>
 		</div>

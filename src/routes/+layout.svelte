@@ -4,3 +4,5 @@
 
 <Modal zIndex="98" />
 <Toast zIndex="99" />
+
+<slot />
