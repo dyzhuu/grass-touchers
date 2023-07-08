@@ -13,9 +13,9 @@
 <AppShell>
 	<svelte:fragment slot="header">
 		<AppBar gridColumns="grid-cols-3" slotTrail="place-content-end">
-	<svelte:fragment slot="lead">(Logo)</svelte:fragment>
-	<svelte:fragment slot="trail">(Camera)</svelte:fragment>
-</AppBar>
+			<svelte:fragment slot="lead">(Logo)</svelte:fragment>
+			<svelte:fragment slot="trail">(Camera)</svelte:fragment>
+		</AppBar>
 	</svelte:fragment>
 	<!-- (sidebarLeft) -->
 	<!-- (sidebarRight) -->
@@ -24,5 +24,15 @@
 	<slot />
 	<!-- ---- / ---- -->
 	<!-- (pageFooter) -->
-	<svelte:fragment slot="footer">Footer</svelte:fragment>
+	<svelte:fragment slot="footer"> 
+		<div class="h-15 bg-surface-800 flex ">
+			<div class="flex justify-center w-[50dvw] p-1">
+				<button type="button" class="btn-icon btn-icon-xl variant-filled rounded-md">(icon)</button>
+			</div>
+
+			<div class="flex justify-center w-[50dvw] p-1">
+				<button type="button" class="btn-icon btn-icon-xl variant-filled rounded-md">(icon)</button>
+			</div>
+		</div>
+	</svelte:fragment>
 </AppShell>
