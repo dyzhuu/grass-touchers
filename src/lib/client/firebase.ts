@@ -2,10 +2,10 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import * as stores from '$lib/stores';
 import { toastStore } from '@skeletonlabs/skeleton';
-import { get } from 'svelte/store';
+import { PUBLIC_FIREBASE_KEY as apiKey } from '$env/static/public';
 
 const config = {
-	apiKey: 'AIzaSyDu8yxldHRJeioacwyOlv7Dhd2Mz1U3q0A',
+	apiKey,
 	authDomain: 'grass-touchers.firebaseapp.com'
 };
 
