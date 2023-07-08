@@ -14,12 +14,12 @@
 		</div>
 		<div class="bg-surface-900 h-[100dvh] w-[40dvw] flex flex-col justify-center gap-y-10 px-10">
 			<p class="font-extrabold text-3xl mx-auto">Touch grass today.</p>
-			<button class="btn bg-primary-500 w-full" on:click={signInWithGoogle}>Sign in with Google </button>
+			<button class="btn bg-primary-500 py-5 w-full" on:click={signInWithGoogle}>Sign in with Google </button>
 		</div>
 	{:else}
-		<div class="h-[100dvh] pt-[30dvh] flex flex-col mx-auto gap-y-10">
-			<img src={logo} class="w-[60dvw]">
-			<button class="btn bg-primary-500" on:click={signInWithGoogle}>Sign in with Google </button>
+		<div class="h-[100dvh] pt-[25dvh] flex flex-col mx-auto gap-y-5">
+			<img src={logo} class="w-[95dvw]">
+			<button class="btn bg-primary-500 py-5" on:click={signInWithGoogle}>Sign in with Google </button>
 		</div>
 	{/if}
 </div>
