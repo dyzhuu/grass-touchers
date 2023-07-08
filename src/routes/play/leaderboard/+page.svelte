@@ -1,7 +1,4 @@
 <script lang="ts">
-    import type { TableSource } from '@skeletonlabs/skeleton';
-    import { Table, tableMapperValues } from '@skeletonlabs/skeleton'
-
     const userList = [
         { id: 1, email: "user1@example.com", username: "user1", score: 10 },
         { id: 2, email: "user2@example.com", username: "user2", score: 20 },
