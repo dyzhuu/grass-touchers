@@ -19,6 +19,7 @@
 		"@tailwindcss/forms": "^0.5.3",
 		"@tailwindcss/typography": "^0.5.9",
 		"@types/google.maps": "^3.53.4",
+		"@types/node": "^20.4.1",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"autoprefixer": "^10.4.14",
@@ -39,8 +40,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@google-cloud/vision": "^3.1.4",
 		"@googlemaps/js-api-loader": "^1.16.2",
-		"@types/node": "^20.4.1",
 		"firebase": "^10.0.0",
 		"firebase-admin": "^11.9.0",
 		"i": "^0.3.7"
