@@ -15,6 +15,7 @@
 	import camera from '$lib/public/camera.png';
 	import MenuNavigation from '$lib/component/MenuNavigation.svelte';
 
+	// TODO: remove later since adding 3 navbar buttons
     $: isMap = $page.url.pathname == '/play';
 
 	function drawerOpen(): void {
