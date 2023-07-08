@@ -12,6 +12,7 @@
 
 		(async () => {
 			const { Map } = await loader.importLibrary('maps');
+
 			let map = new Map(div, {
 				zoom: 4,
 				center: position,
