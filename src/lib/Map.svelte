@@ -3,6 +3,15 @@
 	import { Loader } from '@googlemaps/js-api-loader';
 	import { element } from 'svelte/internal';
 
+	// Constants
+	const RED = "#c40f18";
+	const GREEN = "#00FF00";
+	const GRAY = "#969696";
+
+	// Globals
+	var previousLocations = [[-36.850307, 174.767681]];  //Dummy location
+	var userPosition:number[];
+
 	function getUserPosition(): Promise<[number, number]> {
 		return new Promise((res, rej) => {
 			if (navigator.geolocation) {
@@ -20,7 +29,33 @@
 		});
 	}
 
+	function updateMarker(marker:google.maps.Marker){
+		const new_latlng = new google.maps.LatLng(userPosition[0], userPosition[1]);
+		marker.setPosition(new_latlng);
+		// for debugging
+		// console.log(new_position, "hello")
+		// const new_latlng = new google.maps.LatLng(marker.getPosition().lat() + 1, marker.getPosition().lng() + 1);
+	}
+
+	function updateRegion(parks:google.maps.Polygon[]) {
+		// Logic for user detection in region
+		const currentPosition = new google.maps.LatLng(userPosition[0], userPosition[1]);
+		parks.forEach((park) => {
+			if (google.maps.geometry.poly.containsLocation(currentPosition, park)) {
+				park.setOptions({fillColor: RED});
+			} else {
+				previousLocations.forEach((coordinate) => {
+					const lastPosition = new google.maps.LatLng(coordinate[0], coordinate[1]);
+					if (google.maps.geometry.poly.containsLocation(lastPosition, park)) {
+						park.setOptions({fillColor: GRAY});
+					}
+				})
+			}
+		});
+	}
+
 	function map(div: HTMLDivElement) {
+		const interval = 3;
 		const loader = new Loader({
 			apiKey,
 			version: 'weekly'
@@ -29,15 +64,21 @@
 		(async () => {
 			const { Map } = await loader.importLibrary('maps');
 
-			const default_position = await getUserPosition(); //getUserPosition runs before map loaded
+			//const { Marker } = await loader.importLibrary("marker");
 
-			const position = new google.maps.LatLng(default_position[0], default_position[1]);
+			userPosition = await getUserPosition();
+
+			const position = new google.maps.LatLng(userPosition[0], userPosition[1]);
 
 			let main_map = new Map(div, {
 				zoom: 14,
 				center: position,
 				mapId: 'DEMO_MAP_ID'
 			});
+
+			let user_position_marker = new google.maps.Marker({position: position, title: "YOU!"});
+
+			user_position_marker.setMap(main_map);
 
 			// loop this for each park
 
@@ -377,29 +418,43 @@
 				Waiatarau_VictoriaPark,
 				Pukekawa_AucklandDomain
 			];
-			const allParksLatLng: google.maps.LatLng[][] = [];
 
-			allParksCoords.forEach((element) => {
-				let park_coords: google.maps.LatLng[] = [];
-				element.forEach((subElement) => {
-					park_coords.push(new google.maps.LatLng(subElement[1], subElement[0]));
+			let allParksMap: google.maps.Polygon[] = [];
+			allParksCoords.forEach((park) => {
+				let parkCoords: google.maps.LatLng[] = [];
+				park.forEach((element) => {
+					parkCoords.push(new google.maps.LatLng(element[1], element[0]));
 				});
-				allParksLatLng.push(park_coords);
-			});
+				
+				// Construct the polygon.
+				const parkMap = new google.maps.Polygon({
+					paths: parkCoords,
+					strokeColor: "black",
+					strokeOpacity: 0.8,
+					strokeWeight: 2,
+					fillColor: GREEN,
+					fillOpacity: 0.35
+				});
 
-			// Construct the polygon.
-			const allParksMap = new google.maps.Polygon({
-				paths: allParksLatLng,
-				strokeColor: '#00FF00',
-				strokeOpacity: 0.8,
-				strokeWeight: 2,
-				fillColor: '#00FF00',
-				fillOpacity: 0.35
-			});
+				parkMap.setMap(main_map);
 
-			allParksMap.setMap(main_map);
+				allParksMap.push(parkMap);
+			})
+			
+			// Repeated events
+			async function refreshPosition() {
+				const new_pos = await getUserPosition();
+				userPosition = new_pos;
+
+				updateMarker(user_position_marker);
+
+				updateRegion(allParksMap);
+
+				setTimeout(refreshPosition, 1000 * interval);
+			}
+			refreshPosition();
 		})();
 	}
 </script>
 
-<div use:map id="map" class="w-full h-full" />
+<div use:map id="map" class="m-5 w-full h-full" />
