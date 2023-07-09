@@ -1,7 +1,8 @@
 <script lang="ts">
     import { getLeaderboard } from '$lib/client/api';
+    import { userProfile } from '$lib/stores';
 
-    const loggedInUser = { id: 5, email: "user5@example.com", username: "user5", score: 50 }
+    const loggedInUser = { id: $userProfile?.id, email: $userProfile?.email, username: $userProfile?.username, score: $userProfile?.score }
 </script>
 
 <h1 class="mt-10 text-center font-serif text-[3rem] font-bold underline">Leaderboard</h1>
