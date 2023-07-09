@@ -1,8 +1,11 @@
 <script lang="ts">
+	import { Avatar } from '@skeletonlabs/skeleton';
+	import logoWhite from '$lib/public/logoWhite.png';
+	import gravatar from 'gravatar';
+	import { userProfile } from '$lib/stores';
 
-    import { Avatar } from '@skeletonlabs/skeleton';
-    import MenuNavigation from '$lib/component/MenuNavigation.svelte';
-    import logoWhite from "$lib/public/logoWhite.png";
+	// get email from database
+	// todo! get user score
 
     import { userProfile } from '$lib/stores';
 
@@ -18,7 +21,7 @@
     
 </script>
 
-<div class="h-1/6" />    
+<div class="h-1/6" />
 
 <!-- <div class="h-1/3 block text-center overflow-visible m-5 bg-gradient-to-tl from-tertiary-900 to-tertiary-700">
     <div class="align-middle">
@@ -36,7 +39,6 @@
     <Avatar class="ml-auto mr-auto absolute -translate-y-[6rem]" shadow="drop-shadow-md" width="w-40" border="border-4 border-secondary-900" rounded="rounded-full" src = "https://variety.com/wp-content/uploads/2021/07/Rick-Astley-Never-Gonna-Give-You-Up.png?w=1024" />
 </div> -->
 
-
 <div class="flex justify-center items-center h-1/3">
     <Avatar class="ml-auto mr-auto absolute -translate-y-[6rem]" shadow="drop-shadow-md" width="w-40" border="border-4 border-tertiary-500" rounded="rounded-full" src = {profile_url} />
     <div class=" border-4 border-tertiary-500 flex justify-center items-end w-full h-full overflow-visible m-5 bg-gradient-to-tl from-tertiary-900 to-tertiary-700">
@@ -53,10 +55,12 @@
         <h1 class="text-center text-6xl bg-gradient-to-b from-success-300 to-green-300 bg-clip-text text-transparent box-decoration-clone"><b>0</b></h1>
     </div>
 
-    <div class="my-5 flex justify-center items-center">
-        <h4 class="text-center h4 bg-gradient-to-b from-tertiary-400 to-tertiary-600 bg-clip-text text-transparent box-decoration-clone">Joined - 9th July, 2023<br>Most recent grass touch - an hour ago</h4>
-    </div>
+	<div class="my-5 flex justify-center items-center">
+		<h4
+			class="text-center h4 bg-gradient-to-b from-tertiary-400 to-tertiary-600 bg-clip-text text-transparent box-decoration-clone"
+		>
+			Joined - 9th July, 2023<br />Most recent grass touch - an hour ago
+		</h4>
+	</div>
 </div>
 <!-- <hr class="!border-t-2 secondary-900" /> -->
-
-

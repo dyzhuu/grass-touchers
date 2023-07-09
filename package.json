@@ -45,6 +45,7 @@
 		"firebase": "^10.0.0",
 		"firebase-admin": "^11.9.0",
 		"geojson": "^0.5.0",
+		"gravatar": "^1.8.2",
 		"i": "^0.3.7",
 		"postgres": "^3.3.5"
 	}
