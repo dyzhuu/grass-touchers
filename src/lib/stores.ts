@@ -7,3 +7,4 @@ export const authenticated = writable(false);
 export const user = writable<User | null>(null);
 export const userProfile = writable<Db.User | null>(null);
 export const showSignin = writable(true);
+export const currentArea = writable<number | null>(null);

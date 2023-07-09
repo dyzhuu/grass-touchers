@@ -56,3 +56,9 @@ export async function getVisitedLocations(userId: number) {
 export async function leaderBoard() {
 	return await sql<User[]>`SELECT * FROM players ORDER BY score DESC LIMIT 50`;
 }
+
+export async function scorePoint(location: number, area: number) {
+	return await sql<
+		User[]
+	>`INSERT INTO touch_grass (player_id, area_id, points, image_hash) VALUES (${location}, ${area}, 100, 'a'::bytea)`;
+}

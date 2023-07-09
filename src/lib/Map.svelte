@@ -43,9 +43,12 @@
 		const currentPosition = new google.maps.LatLng(userPosition[0], userPosition[1]);
 		let visited = new Set((await getVisitedLocations()).map((element) => element.area_id));
 
+		$currentArea = null;
+
 		parks.forEach((park) => {
 			let area_id = park.get('area_id');
 			if (visited.has(area_id)) {
+				$currentArea = area_id;
 				park.setOptions({ fillColor: GRAY });
 			} else if (google.maps.geometry.poly.containsLocation(currentPosition, park)) {
 				park.setOptions({ fillColor: RED });
