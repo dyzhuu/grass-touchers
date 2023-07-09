@@ -34,6 +34,7 @@
 						viewBox="0 0 576 512"
 						><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
 						<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+						<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
 						<style>
 							svg {
 								fill: #ffffff;
@@ -47,7 +48,7 @@
 			</a>
 		</li>
 		<li class={pathName == '/play/leaderboard' ? 'hidden' : 'block'}>
-			<a href="play/leaderboard" on:click={drawerClose}>
+			<a href="/play/leaderboard" on:click={drawerClose}>
 				<div class="rounded-lg p-2 hover:bg-[#282928]">
 					<img alt="leaderboard" src={leaderboard} class="inline mr-5 h-[50px]" />
 					<span class="font-mono text-xl font-bold">Leaderboard</span>
