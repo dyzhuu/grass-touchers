@@ -13,6 +13,8 @@
 	import leaderboard from '$lib/public/leaderboard.png';
 	import camera from '$lib/public/camera.png';
 	import MenuNavigation from '$lib/component/MenuNavigation.svelte';
+	import { userProfile } from '$lib/stores';
+	import AuthProvider from '$lib/auth/AuthProvider.svelte';
 
 	// TODO: remove later since adding 3 navbar buttons
 
@@ -44,6 +46,8 @@
 	};
 </script>
 
+<AuthProvider />
+
 <Drawer width="w-[50dvw]">
 	<MenuNavigation />
 </Drawer>
@@ -56,6 +60,8 @@
 					<span>
 						<svg xmlns="http://www.w3.org/2000/svg" height="2.5em" viewBox="0 0 448 512"
 							><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+							<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+							<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
 							<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
 							<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
 							<style>
@@ -97,7 +103,9 @@
 	<!-- (sidebarRight) -->
 	<!-- (pageHeader) -->
 	<!-- Router Slot -->
-	<slot />
+	{#if $userProfile}
+		<slot />
+	{/if}
 	<!-- ---- / ---- -->
 	<!-- (pageFooter) -->
 	<svelte:fragment slot="footer">
@@ -110,6 +118,8 @@
 					>
 						<svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 576 512"
 							><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+							<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+							<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
 							<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
 							<!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
 							<style>

@@ -1,7 +1,6 @@
 import { getUser, getVisitedLocations } from '$lib/server/db';
 import { error, json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { PostgresError } from 'postgres';
 
 export const GET: RequestHandler = async ({ locals }) => {
 	let user;

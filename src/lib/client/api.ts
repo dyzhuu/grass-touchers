@@ -57,7 +57,7 @@ export async function getLocations(): Promise<Db.Locations> {
 	return await response.json();
 }
 
-export async function getVisitedLocations(username: string): Promise<Db.Scan> {
+export async function getVisitedLocations(): Promise<Db.Scan> {
 	let response = await secureFetch(`/api/secure/visited`);
 
 	if (response.status == 401) {
