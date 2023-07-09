@@ -10,7 +10,7 @@
 
 	// Globals
 	var previousLocations = [[-36.850307, 174.767681]];  //Dummy location
-	var userPosition:number[];
+	//var userPosition:number[];
 
 	function getUserPosition(): Promise<[number, number]> {
 		return new Promise((res, rej) => {
@@ -29,15 +29,15 @@
 		});
 	}
 
-	function updateMarker(marker:google.maps.Marker){
+	function updateMarker(userPosition: number[], marker:google.maps.Marker){
 		const new_latlng = new google.maps.LatLng(userPosition[0], userPosition[1]);
 		marker.setPosition(new_latlng);
 		// for debugging
-		// console.log(new_position, "hello")
+		console.log(userPosition, "hello")
 		// const new_latlng = new google.maps.LatLng(marker.getPosition().lat() + 1, marker.getPosition().lng() + 1);
 	}
 
-	function updateRegion(parks:google.maps.Polygon[]) {
+	function updateRegion(userPosition: number[], parks:google.maps.Polygon[]) {
 		// Logic for user detection in region
 		const currentPosition = new google.maps.LatLng(userPosition[0], userPosition[1]);
 		parks.forEach((park) => {
@@ -66,7 +66,7 @@
 
 			//const { Marker } = await loader.importLibrary("marker");
 
-			userPosition = await getUserPosition();
+			const userPosition = await getUserPosition();
 
 			const position = new google.maps.LatLng(userPosition[0], userPosition[1]);
 
@@ -79,8 +79,15 @@
 			let user_position_marker = new google.maps.Marker({position: position, title: "YOU!"});
 
 			user_position_marker.setMap(main_map);
-
+			
 			// loop this for each park
+
+			const TestingArea = [
+				[174.770156, -36.852384],
+				[174.770237, -36.852435],
+				[174.770099, -36.852567],
+				[174.770084, -36.852471]
+		];
 
 			const AlbertParkTop = [
 				[174.767006, -36.8491229],
@@ -411,6 +418,7 @@
 
 			// this const should reference all parks in database later
 			const allParksCoords = [
+				TestingArea,
 				AlbertParkTop,
 				AlbertParkBottom,
 				OGGB,
@@ -418,23 +426,24 @@
 				Waiatarau_VictoriaPark,
 				Pukekawa_AucklandDomain
 			];
+			const allParksLatLng: google.maps.LatLng[][] = [];
 
 			let allParksMap: google.maps.Polygon[] = [];
 			allParksCoords.forEach((park) => {
 				let parkCoords: google.maps.LatLng[] = [];
 				park.forEach((element) => {
 					parkCoords.push(new google.maps.LatLng(element[1], element[0]));
-				});
-				
-				// Construct the polygon.
+			});
+
+			// Construct the polygon.
 				const parkMap = new google.maps.Polygon({
 					paths: parkCoords,
 					strokeColor: "black",
-					strokeOpacity: 0.8,
-					strokeWeight: 2,
+				strokeOpacity: 0.8,
+				strokeWeight: 2,
 					fillColor: GREEN,
-					fillOpacity: 0.35
-				});
+				fillOpacity: 0.35
+			});
 
 				parkMap.setMap(main_map);
 
@@ -444,11 +453,10 @@
 			// Repeated events
 			async function refreshPosition() {
 				const new_pos = await getUserPosition();
-				userPosition = new_pos;
 
-				updateMarker(user_position_marker);
+				updateMarker(new_pos, user_position_marker);
 
-				updateRegion(allParksMap);
+				updateRegion(new_pos, allParksMap);
 
 				setTimeout(refreshPosition, 1000 * interval);
 			}
