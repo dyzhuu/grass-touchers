@@ -75,26 +75,6 @@
 			</svelte:fragment>
 
 			<img alt="logo" src={logoWhite} class="h-[50px]" />
-
-			<svelte:fragment slot="trail">
-				<button
-					type="button"
-					class="btn-icon btn-icon-lg bg-[#595959] hover:bg-[#5e5e5e]"
-					on:click={setCamera}
-				>
-					<img alt="logo" src={camera} class="absolute left h-[25px]" />
-				</button>
-				<input
-					id="cameraInput"
-					class="hidden"
-					type="file"
-					name="photo"
-					accept="image/*"
-					capture="environment"
-					on:change={(e) => onFileSelected(e)}
-					bind:this={fileinput}
-				/>
-			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
 	<!-- (sidebarLeft) -->
