@@ -6,11 +6,12 @@
 
     import { userProfile } from '$lib/stores';
 
-    // get email from database
+    // get email from databases
     const userEmail = $userProfile!.email
     const userName = $userProfile!.username
-    // todo! get user score
+    const userScore = $userProfile!.score
 
+    // if this line isnt working, run `npm install --save @types/gravatar`
     import gravatar from 'gravatar';
     var profile_url = gravatar.url(userEmail, {r: 'pg'});
     console.log(profile_url);
@@ -39,7 +40,7 @@
 <div class="flex justify-center items-center h-1/3">
     <Avatar class="ml-auto mr-auto absolute -translate-y-[6rem]" shadow="drop-shadow-md" width="w-40" border="border-4 border-tertiary-500" rounded="rounded-full" src = {profile_url} />
     <div class=" border-4 border-tertiary-500 flex justify-center items-end w-full h-full overflow-visible m-5 bg-gradient-to-tl from-tertiary-900 to-tertiary-700">
-        <h1 class="text-center h1 bg-gradient-to-br from-secondary-700 p-10 to-secondary-900 bg-clip-text text-transparent box-decoration-clone"><b>{userName} 🖌</b><br>Points - 5001</h1>
+        <h1 class="text-center h1 bg-gradient-to-br from-secondary-700 p-10 to-secondary-900 bg-clip-text text-transparent box-decoration-clone"><b>{userName} 🖌</b><br><b>{userScore}</b> points</h1>
     </div>
 </div>
 
@@ -48,7 +49,8 @@
 <div class="my-20">
     <div class="my-5 flex justify-center items-center">
         <img alt="logo" src={logoWhite} class="h-20">
-        <h1 class="text-center text-6xl bg-gradient-to-b from-success-300 to-green-300 bg-clip-text text-transparent box-decoration-clone"><b>39</b></h1>
+        <!-- total grass touched. TODO: add total locations -->
+        <h1 class="text-center text-6xl bg-gradient-to-b from-success-300 to-green-300 bg-clip-text text-transparent box-decoration-clone"><b>0</b></h1>
     </div>
 
     <div class="my-5 flex justify-center items-center">
