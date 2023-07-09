@@ -3,6 +3,7 @@
 	import { Loader } from '@googlemaps/js-api-loader';
 	import { getLocations, getVisitedLocations } from './client/api';
 	import recentre from '$lib/public/recentre.png';
+	import { currentArea } from './stores';
 
 	// Constants
 	const RED = '#c40f18';
@@ -34,7 +35,7 @@
 		const new_latlng = new google.maps.LatLng(userPosition[0], userPosition[1]);
 		marker.setPosition(new_latlng);
 		// for debugging
-		// console.log(new_position, "hello")
+		// console.log(userPosition, 'hello');
 		// const new_latlng = new google.maps.LatLng(marker.getPosition().lat() + 1, marker.getPosition().lng() + 1);
 	}
 
@@ -56,11 +57,11 @@
 		});
 	}
 
-	function reCentreMap(userPosition: number[], main_map:google.maps.Map){
-        const userLatLng = new google.maps.LatLng(userPosition[0], userPosition[1]);
-        main_map.setCenter(userLatLng);
-        main_map.setZoom(14);
-    }
+	function reCentreMap(userPosition: number[], main_map: google.maps.Map) {
+		const userLatLng = new google.maps.LatLng(userPosition[0], userPosition[1]);
+		main_map.setCenter(userLatLng);
+		main_map.setZoom(14);
+	}
 
 	function map(div: HTMLDivElement) {
 		const interval = 3;
@@ -134,7 +135,13 @@
 
 <div use:map id="map" class="m-5 w-full h-full" />
 <div class="ml-10 mb-3 absolute bottom-0 left-[75px]">
-	<button type="button" class="btn-icon btn-icon-lg bg-[#595959] hover:bg-[#5e5e5e]" on:click={function() {reCentreMap(userPosition, main_map);}}>
+	<button
+		type="button"
+		class="btn-icon btn-icon-lg bg-[#595959] hover:bg-[#5e5e5e]"
+		on:click={function () {
+			reCentreMap(userPosition, main_map);
+		}}
+	>
 		<img alt="logo" src={recentre} class="absolute left h-[25px]" />
 	</button>
 </div>
