@@ -51,3 +51,7 @@ export async function getVisitedLocations(userId: number) {
 		Scan[]
 	>`SELECT area_id, scan_time FROM touch_grass WHERE player_id = ${userId} AND scan_time > CURRENT_TIMESTAMP - INTERVAL '7 days';`;
 }
+
+export async function leaderBoard() {
+	return await sql<User[]>`SELECT * FROM players ORDER BY score DESC LIMIT 50`;
+}

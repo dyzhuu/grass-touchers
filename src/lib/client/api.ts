@@ -57,6 +57,16 @@ export async function getLocations(): Promise<Db.Locations> {
 	return await response.json();
 }
 
+export async function getLeaderboard(): Promise<Db.User[]> {
+	let response = await secureFetch(`/api/leaderboard`);
+
+	if (response.status !== 200) {
+		throw new Error('Unknown Error');
+	}
+
+	return await response.json();
+}
+
 export async function getVisitedLocations(): Promise<Db.Scan[]> {
 	let response = await secureFetch(`/api/secure/visited`);
 
