@@ -2,6 +2,7 @@
 	import { PUBLIC_MAPS_API_KEY as apiKey } from '$env/static/public';
 	import { Loader } from '@googlemaps/js-api-loader';
 	import { getLocations, getVisitedLocations } from './client/api';
+	import recentre from '$lib/public/recentre.png';
 
 	// Constants
 	const RED = '#c40f18';
@@ -10,6 +11,7 @@
 
 	// Globals
 	var userPosition: number[];
+	var main_map: google.maps.Map;
 
 	function getUserPosition(): Promise<[number, number]> {
 		return new Promise((res, rej) => {
@@ -51,6 +53,12 @@
 		});
 	}
 
+	function reCentreMap(userPosition: number[], main_map:google.maps.Map){
+        const userLatLng = new google.maps.LatLng(userPosition[0], userPosition[1]);
+        main_map.setCenter(userLatLng);
+        main_map.setZoom(14);
+    }
+
 	function map(div: HTMLDivElement) {
 		const interval = 3;
 		const loader = new Loader({
@@ -67,7 +75,7 @@
 
 			const position = new google.maps.LatLng(userPosition[0], userPosition[1]);
 
-			let main_map = new Map(div, {
+			main_map = new Map(div, {
 				zoom: 14,
 				center: position,
 				mapId: 'DEMO_MAP_ID'
@@ -122,3 +130,8 @@
 </script>
 
 <div use:map id="map" class="m-5 w-full h-full" />
+<div class="ml-10 mb-3 absolute bottom-0 left-[75px]">
+	<button type="button" class="btn-icon btn-icon-lg bg-[#595959] hover:bg-[#5e5e5e]" on:click={function() {reCentreMap(userPosition, main_map);}}>
+		<img alt="logo" src={recentre} class="absolute left h-[25px]" />
+	</button>
+</div>
