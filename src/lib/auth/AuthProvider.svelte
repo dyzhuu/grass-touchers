@@ -36,7 +36,7 @@
 	$: if ($showSignin && !signInModalVisible) {
 		signInModalVisible = true;
 		modalStore.trigger(settings.signIn);
-	} else if ($shouldCreateProfileVisible && !usernameModalVisible) {
+	} else if ($shouldCreateProfileVisible && !signInModalVisible) {
 		usernameModalVisible = true;
 		modalStore.trigger(settings.createAccount);
 	} else {
