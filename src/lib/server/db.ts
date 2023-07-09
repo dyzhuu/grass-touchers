@@ -8,6 +8,8 @@ export type User = {
 	username: string;
 };
 
+export type Locations = Record<string, { boundary: [{ lng: number; lat: number }][]; id: number }>;
+
 export async function getUser(email: string) {
 	return (await sql<User[]>`SELECT * FROM users WHERE email = ${email}`)[0];
 }

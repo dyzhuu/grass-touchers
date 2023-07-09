@@ -44,3 +44,13 @@ export async function updateProfile(username: string): Promise<Db.User> {
 
 	return await response.json();
 }
+
+export async function getLocations(): Promise<Db.Locations> {
+	let response = await secureFetch(`/api/locations`);
+
+	if (response.status !== 200) {
+		throw new Error('Unknown Error');
+	}
+
+	return await response.json();
+}
