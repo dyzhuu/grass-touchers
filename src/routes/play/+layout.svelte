@@ -61,7 +61,9 @@
 				</button>
 			</svelte:fragment>
 
-			<img alt="logo" src={logoWhite} class="h-[50px]" />
+			<a href="/play">
+				<img alt="logo" src={logoWhite} class="h-[50px]" />
+			</a>
 
 			<svelte:fragment slot="trail">
 			</svelte:fragment>
