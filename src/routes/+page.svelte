@@ -10,7 +10,7 @@
 		<div class="h-[100dvh] flex grow justify-center items-center">
 			<img src={logo} class="w-[60dvw] translate-y-[40px]" alt="logo" />
 		</div>
-		<div class="bg-surface-900 h-[100dvh] w-[40dvw] flex flex-col justify-center gap-y-10 px-10">
+		<div class="bg-surface-900 h-[100dvh] w-[40dvw] flex flex-col justify-center gap-y-10 px-10" id="rightSlide">
 			<p class="font-extrabold text-3xl mx-auto">Touch grass today.</p>
 			<a class="btn bg-primary-500 py-5 w-full" href="/play">Play now</a>
 		</div>
