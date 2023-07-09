@@ -6,6 +6,13 @@
 
     import logoWhite from "$lib/public/logoWhite.png";
 
+    // TODO: this needs to grab email form database in future
+    const userEmail = "mingraygoy@gmail.com"
+
+    import gravatar from 'gravatar';
+    var profile_url = gravatar.url(userEmail, {r: 'pg'});
+    console.log(profile_url);
+    
 </script>
 
 <div class="h-1/6" />    
@@ -28,7 +35,7 @@
 
 
 <div class="flex justify-center items-center h-1/3">
-    <Avatar class="ml-auto mr-auto absolute -translate-y-[6rem]" shadow="drop-shadow-md" width="w-40" border="border-4 border-tertiary-500" rounded="rounded-full" src = "https://variety.com/wp-content/uploads/2021/07/Rick-Astley-Never-Gonna-Give-You-Up.png?w=1024" />
+    <Avatar class="ml-auto mr-auto absolute -translate-y-[6rem]" shadow="drop-shadow-md" width="w-40" border="border-4 border-tertiary-500" rounded="rounded-full" src = {profile_url} />
     <div class=" border-4 border-tertiary-500 flex justify-center items-end w-full h-full overflow-visible m-5 bg-gradient-to-tl from-tertiary-900 to-tertiary-700">
         <h1 class="text-center h1 bg-gradient-to-br from-secondary-700 p-10 to-secondary-900 bg-clip-text text-transparent box-decoration-clone"><b>Username 🖌</b><br>Points - 5001</h1>
     </div>
