@@ -31,6 +31,8 @@ auth.onAuthStateChanged(async (maybeUser) => {
 
 			stores.userProfile.set(null);
 		}
+	} else {
+		stores.userProfile.set(null);
 	}
 
 	stores.firebaseReady.set(true);
@@ -55,4 +57,8 @@ export async function signInWithGoogle() {
 			});
 		}
 	}
+}
+
+export async function logout() {
+	await auth.signOut();
 }

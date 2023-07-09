@@ -1,9 +1,10 @@
-<script lang="ts">
-	import { ApiError, updateProfile } from '$lib/client/api';
-	import { userProfile } from '$lib/stores';
+<script>
+	import { signInWithGoogle } from '$lib/client/firebase';
+	import { user, userProfile } from '$lib/stores';
 	import { toastStore } from '@skeletonlabs/skeleton';
+	import { ApiError, updateProfile } from '$lib/client/api';
 
-	let username: string;
+	let username = '';
 
 	async function submitUsername() {
 		if (username.length > 32) {
@@ -36,12 +37,12 @@
 	}
 </script>
 
-<div>
-	<h1>Welcome to Grass Touchers</h1>
-
+{#if !$user}
+	<button on:click={signInWithGoogle}>Sign in with google</button>
+{:else if !$userProfile}
 	<label class="label">
 		<span>Username</span>
 		<input class="input" type="text" placeholder="username" bind:value={username} />
 		<button on:click={submitUsername}>Ok</button>
 	</label>
-</div>
+{/if}

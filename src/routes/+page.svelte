@@ -1,6 +1,12 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
+	import SignInButton from '$lib/auth/SignInButton.svelte';
 	import logo from '$lib/public/LandingLogo.png';
-	let screenSize: any;
+	import { firebaseReady, userProfile } from '$lib/stores';
+	let screenSize: number;
+
+	$: if ($firebaseReady && $userProfile && browser) goto('/play');
 </script>
 
 <svelte:window bind:innerWidth={screenSize} />
@@ -10,14 +16,17 @@
 		<div class="h-[100dvh] flex grow justify-center items-center">
 			<img src={logo} class="w-[60dvw] translate-y-[40px]" alt="logo" />
 		</div>
-		<div class="bg-surface-900 h-[100dvh] w-[40dvw] flex flex-col justify-center gap-y-10 px-10" id="rightSlide">
+		<div
+			class="bg-surface-900 h-[100dvh] w-[40dvw] flex flex-col justify-center gap-y-10 px-10"
+			id="rightSlide"
+		>
 			<p class="font-extrabold text-3xl mx-auto">Touch grass today.</p>
-			<a class="btn bg-primary-500 py-5 w-full" href="/play">Play now</a>
+			<SignInButton />
 		</div>
 	{:else}
 		<div class="h-[100dvh] pt-[25dvh] flex flex-col mx-auto gap-y-5">
 			<img src={logo} class="w-[95dvw]" alt="logo" />
-			<a class="btn bg-primary-500 py-5" href="/play">Play now </a>
+			<SignInButton />
 		</div>
 	{/if}
 </div>
