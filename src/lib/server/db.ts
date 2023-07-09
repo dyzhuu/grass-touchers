@@ -17,11 +17,11 @@ export type Scan = {
 export type Locations = Record<string, { boundary: { lng: number; lat: number }[]; id: number }>;
 
 export async function getUser(email: string) {
-	return (await sql<User[]>`SELECT * FROM users WHERE email = ${email}`)[0];
+	return (await sql<User[]>`SELECT * FROM players WHERE email = ${email}`)[0];
 }
 
 export async function updateUsername(email: string, username: string) {
-	return await sql`INSERT INTO your_table (email, username)
+	return await sql`INSERT INTO players (email, username)
 VALUES (${email}, ${username})
 ON CONFLICT (email)
 DO UPDATE SET username = EXCLUDED.username;`;

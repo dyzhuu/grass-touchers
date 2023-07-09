@@ -17,8 +17,8 @@ const secureFetch: typeof fetch = async (url, params) =>
 		...params
 	});
 
-export async function getProfile(username: string): Promise<Db.User> {
-	let response = await secureFetch(`/api/secure/profile?username=${encodeURIComponent(username)}`);
+export async function getProfile(): Promise<Db.User> {
+	let response = await secureFetch(`/api/secure/profile`);
 
 	if (response.status == 401) {
 		throw new ApiError('not authenticated');
