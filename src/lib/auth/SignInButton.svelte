@@ -40,9 +40,10 @@
 {#if !$user}
 	<button on:click={signInWithGoogle}>Sign in with google</button>
 {:else if !$userProfile}
-	<label class="label">
-		<span>Username</span>
-		<input class="input" type="text" placeholder="username" bind:value={username} />
-		<button on:click={submitUsername}>Ok</button>
+	<label class="label flex flex-col gap-y-5">
+		<div class="flex flex-col justify-center">
+			<input class="input py-3" type="text" placeholder="username" bind:value={username} />
+		</div>
+		<button on:click={submitUsername} class="btn bg-primary-500 py-4">Ok</button>
 	</label>
 {/if}
