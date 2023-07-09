@@ -11,15 +11,15 @@ export const firebaseReady = writable(false);
 export const shouldSignBeVisible = derived(
 	[firebaseReady, authenticated, showSignin],
 	([firebaseReady, authenticated, showSignIn]) => {
-		console.log([authenticated, showSignIn]);
-		firebaseReady && (showSignIn || !authenticated);
+		console.log('sign in', [authenticated, showSignIn]);
+		return firebaseReady && (showSignIn || !authenticated);
 	}
 );
 
 export const shouldCreateProfileVisible = derived(
 	[authenticated, shouldSignBeVisible, userProfile],
 	([authenticated, shouldSignBeVisible, userProfile]) => {
-		console.log([authenticated, shouldCreateProfileVisible]);
-		!shouldSignBeVisible && authenticated && userProfile;
+		console.log('create profile', [authenticated, shouldSignBeVisible, userProfile]);
+		return !shouldSignBeVisible && authenticated && !userProfile;
 	}
 );

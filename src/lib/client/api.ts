@@ -2,7 +2,7 @@ import { user } from '$lib/stores';
 import { get } from 'svelte/store';
 import type * as Db from '$lib/server/db';
 
-const errorType = ['not authenticated', 'username taken'] as const;
+const errorType = ['not authenticated', 'username taken', 'no profile'] as const;
 type ErrorType = (typeof errorType)[number];
 
 export class ApiError extends Error {
@@ -22,6 +22,8 @@ export async function getProfile(username: string): Promise<Db.User> {
 
 	if (response.status == 401) {
 		throw new ApiError('not authenticated');
+	} else if (response.status == 404) {
+		throw new ApiError('no profile');
 	} else if (response.status !== 200) {
 		throw new Error('Unknown Error');
 	}
@@ -49,6 +51,18 @@ export async function getLocations(): Promise<Db.Locations> {
 	let response = await secureFetch(`/api/locations`);
 
 	if (response.status !== 200) {
+		throw new Error('Unknown Error');
+	}
+
+	return await response.json();
+}
+
+export async function getVisitedLocations(username: string): Promise<Db.Scan> {
+	let response = await secureFetch(`/api/secure/visited`);
+
+	if (response.status == 401) {
+		throw new ApiError('not authenticated');
+	} else if (response.status !== 200) {
 		throw new Error('Unknown Error');
 	}
 

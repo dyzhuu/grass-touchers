@@ -1,24 +1,44 @@
 <script lang="ts">
 	import { modalStore, type ModalSettings, focusTrap } from '@skeletonlabs/skeleton';
-	import { showSignin } from '../stores';
+	import { shouldCreateProfileVisible, showSignin, userProfile } from '../stores';
 	import AuthView from './AuthView.svelte';
+	import UsernameView from './UsernameView.svelte';
 
-	let modalVisible = false;
+	let signInModalVisible = false;
+	let usernameModalVisible = false;
 
-	const settings: ModalSettings = {
-		type: 'component',
-		component: {
-			ref: AuthView
+	const settings: Record<string, ModalSettings> = {
+		signIn: {
+			type: 'component',
+			component: {
+				ref: AuthView
+			},
+
+			response() {
+				signInModalVisible = false;
+			}
 		},
+		createAccount: {
+			type: 'component',
+			component: {
+				ref: UsernameView
+			},
 
-		response() {
-			modalVisible = false;
+			response() {
+				usernameModalVisible = false;
+			}
 		}
 	};
 
-	$: if ($showSignin && !modalVisible) {
-		modalVisible = true;
-		modalStore.trigger(settings);
+	$: console.log('user profile', $userProfile);
+	$: console.log('show create profile', $shouldCreateProfileVisible);
+
+	$: if ($showSignin && !signInModalVisible) {
+		signInModalVisible = true;
+		modalStore.trigger(settings.signIn);
+	} else if ($shouldCreateProfileVisible && !usernameModalVisible) {
+		usernameModalVisible = true;
+		modalStore.trigger(settings.createAccount);
 	} else {
 		console.log('Closing modal');
 		modalStore.clear();

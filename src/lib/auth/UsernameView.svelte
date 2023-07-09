@@ -10,6 +10,16 @@
 			toastStore.trigger({
 				message: `Usesname must be less then 32 characters`
 			});
+
+			return;
+		}
+
+		if (username.length == 0) {
+			toastStore.trigger({
+				message: `Username con't be empty`
+			});
+
+			return;
 		}
 
 		try {
@@ -17,7 +27,7 @@
 		} catch (ex) {
 			console.error(ex);
 
-			if (ex instanceof ApiError) {
+			if (ex instanceof ApiError && ex.kind == 'username taken') {
 				toastStore.trigger({
 					message: 'That username is taken'
 				});
