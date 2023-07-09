@@ -18,3 +18,9 @@ VALUES (${email}, ${username})
 ON CONFLICT (email)
 DO UPDATE SET username = EXCLUDED.username;`;
 }
+
+export async function getTopUsers() {
+	return await sql`SELECT id, username, score FROM users 
+	ORDERBY score DESC
+	LIMIT 10`;
+}

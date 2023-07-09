@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { user, userProfile } from "$lib/stores";
-	import { onMount } from "svelte";
 
-  let topUsers: any[] = [];
   const loggedInUser = { 
     id: $userProfile?.id,
     username: $userProfile?.username,
