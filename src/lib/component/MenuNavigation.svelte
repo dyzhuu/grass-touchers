@@ -48,7 +48,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="/play" on:click={drawerClose}>
+			<a href="/" on:click={drawerClose}>
 				<div class="rounded-lg p-2 hover:bg-[#282928]">
 					<img alt="logout" src={logout} class="inline mr-5 h-[50px]">
 					<span class="font-mono text-xl font-bold">Log Out</span>
