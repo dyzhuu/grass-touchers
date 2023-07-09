@@ -45,7 +45,7 @@
 		src={profile_url}
 	/>
 	<div
-		class=" border-4 border-tertiary-500 flex justify-center items-end w-full h-full overflow-visible m-5 bg-gradient-to-tl bg-surface-400"
+		class=" border-4 border-tertiary-500 flex justify-center items-end w-full h-full overflow-visible m-5 bg-gradient-to-tl bg-surface-400 rounded-3xl"
 	>
 		<h1
 			class="text-center h1 bg-gradient-to-br from-secondary-700 p-10 to-secondary-900 bg-clip-text text-transparent box-decoration-clone"

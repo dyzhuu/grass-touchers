@@ -38,7 +38,7 @@
 </script>
 
 {#if !$user}
-	<button on:click={signInWithGoogle}>Sign in with google</button>
+	<button class="btn bg-primary-500 py-4" on:click={signInWithGoogle}>Sign in with google</button>
 {:else if !$userProfile}
 	<label class="label flex flex-col gap-y-5">
 		<div class="flex flex-col justify-center">
